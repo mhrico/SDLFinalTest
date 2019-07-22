@@ -109,14 +109,21 @@ public class StudentList
 				String readString = reader.readLine();
 				String words[] = readString.split(Constants.DELIMITER);
 				
-				boolean done = false;
-				String t = args[0].substring(1);
-				for (int idx = 0; idx < words.length && !done; idx++)
+				//boolean done = false;
+				String query = args[0].substring(1);
+				for (int idx = 0; idx < words.length; idx++)
 				{
-					if (words[idx].equals(t)) 
+					if (words[idx].equals(query)) 
 					{
-						System.out.println("We found it!");
-						done = true;
+						System.out.println(query+" was found at " +idx);
+						break;
+						//done = true;
+					}
+
+					else if(idx == words.length)
+					{
+						System.out.println(query+" was not found ");
+						break;
 					}
 				}
 			} 
@@ -156,7 +163,7 @@ public class StudentList
 					}
 				}
 
-				System.out.println(count + " word(s) found " + characterArray.length);
+				System.out.println(count + " word(s) found ");
 			} 
 			catch (Exception e) 
 			{
