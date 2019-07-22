@@ -5,6 +5,7 @@ import java.util.*;
 public class StudentList 
 {
 
+	// Moved the message that shows how to use the program into a single method, so it can be reused in different places
 	public static void showUsage()
 	{
 		System.out.println("Incorrect parameters. Usage: java StudentList -a | -r | -c | +WORD | ?WORD");
@@ -25,17 +26,16 @@ public class StudentList
 
 		catch(Exception e)
 		{
-
+			System.out.println("Could not open file.");
 		}
 	}
 	public static void main(String[] args) 
 	{
-		//Loads all the files for reading/writing
+		// Loads all files at the beginning of the program for reading/writing
 		fileMethods();
 
 		// Checks for arguments
-		// Checks for number of arguments and terminates early if arg number is incorrect
-
+		// If Arguments aren't given or more than one argument is given, it shows how to use the program and exits
 		if(args == null || args.length != 1) 
 		{
 			showUsage();
@@ -48,7 +48,8 @@ public class StudentList
 			try 
 			{	
 				String readString = reader.readLine();
-				String words[] = readString.split(Constants.DELIMITER);
+				// Splits the single string in the file into an array of strings according to the delimiter "," by default
+				String words[] = readString.split(Constants.DELIMITER); 
 				for (String word : words) 
 				{
 					System.out.println(word);
@@ -56,7 +57,7 @@ public class StudentList
 			} 
 			catch (Exception e) 
 			{
-
+				System.out.println("Could not open file.");
 			}
 
 			System.out.println("Data Loaded.");
@@ -69,21 +70,22 @@ public class StudentList
 			try 
 			{				
 				String readString = reader.readLine();
-				//System.out.println(r);
+				// Splits the single string in the file into an array of strings according to the delimiter "," by default
 				String words[] = readString.split(Constants.DELIMITER);
-				
+				// Generates random number to get a random output from the file
 				Random randomGenerator = new Random();
 				int random = randomGenerator.nextInt(3);
 				System.out.println(words[random]);
 			} 
 			catch (Exception e) 
 			{
-
+				System.out.println("Could not open file.");
 			}
 
 			System.out.println("Data Loaded.");
 		} 
 
+		// This method adds a word given in the argument and adds a date to the file to show when the new word was added
 		else if (args[0].contains(Constants.ADD_WORD)) 
 		{
 			System.out.println("Loading data ...");
@@ -92,6 +94,7 @@ public class StudentList
 				String subString = args[0].substring(1);
 				
 				Date date = new Date();
+				//Formats the date into a proper style
 				String dateStyle = "dd/mm/yyyy-hh:mm:ss a";
 				DateFormat dateFormat = new SimpleDateFormat(dateStyle);
 				
@@ -100,7 +103,7 @@ public class StudentList
 			} 
 			catch (Exception e) 
 			{
-
+				System.out.println("Could not open file.");
 			}
 
 			System.out.println("Data Loaded.");
@@ -113,19 +116,17 @@ public class StudentList
 			{				
 				String readString = reader.readLine();
 				String words[] = readString.split(Constants.DELIMITER);
-				
-				//boolean done = false;
+		
 				String query = args[0].substring(1);
-				for (int idx = 0; idx < words.length; idx++)
+				for (int index = 0; index < words.length; index++)
 				{
-					if (words[idx].equals(query)) 
+					if (words[index].equals(query)) 
 					{
-						System.out.println(query+" was found at " +idx);
+						System.out.println(query+" was found at " +index);
 						break;
-						//done = true;
 					}
 
-					else if(idx == words.length)
+					else if(index == words.length)
 					{
 						System.out.println(query+" was not found ");
 						break;
@@ -134,7 +135,7 @@ public class StudentList
 			} 
 			catch (Exception e) 
 			{
-
+				System.out.println("Could not open file.");
 			}
 
 			System.out.println("Data Loaded.");
@@ -152,15 +153,18 @@ public class StudentList
 			} 
 			catch (Exception e) 
 			{
-
+				System.out.println("Could not open file.");
 			}
 			
 			System.out.println("Data Loaded.");
 		}
 
+		// When no arguments are given, shows how to use the program
 		else
 		{
 			showUsage();
 		}
+
+		return;
 	}
 }
