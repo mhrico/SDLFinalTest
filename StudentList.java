@@ -5,6 +5,11 @@ import java.util.*;
 public class StudentList 
 {
 
+	public static void showUsage()
+	{
+		System.out.println("Incorrect parameters. Usage: java StudentList -a | -r | -c | +WORD | ?WORD");
+	}
+
 	//Declaring reader and writer outside of methods and making public, so they can be accessed from all methods
 	static BufferedReader reader;
 	static BufferedWriter writer;
@@ -33,7 +38,7 @@ public class StudentList
 
 		if(args == null || args.length != 1) 
 		{
-			System.out.println("Incorrect parameters. Usage: java StudentList -a | -r | -c | +WORD | ?WORD");
+			showUsage();
 			return; 
 		}
 
@@ -151,6 +156,11 @@ public class StudentList
 			}
 			
 			System.out.println("Data Loaded.");
+		}
+
+		else
+		{
+			showUsage();
 		}
 	}
 }
