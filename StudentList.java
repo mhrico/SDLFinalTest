@@ -33,17 +33,17 @@ public class StudentList
 
 		if(args == null || args.length != 1) 
 		{
-			System.out.println("Incorrect parameters. Usage: java StudentList a | r | c | +WORD | ?WORD");
+			System.out.println("Incorrect parameters. Usage: java StudentList -a | -r | -c | +WORD | ?WORD");
 			return; 
 		}
 
-		if (args[0].equals("a")) 
+		if (args[0].equals(Constants.SHOW_ALL)) 
 		{
 			System.out.println("Loading data ...");
 			try 
 			{	
 				String readString = reader.readLine();
-				String words[] = readString.split(",");
+				String words[] = readString.split(Constants.DELIMITER);
 				for (String word : words) 
 				{
 					System.out.println(word);
@@ -58,14 +58,14 @@ public class StudentList
 
 		} 
 		
-		else if (args[0].equals("r")) 
+		else if (args[0].equals(Constants.SHOW_RANDOM)) 
 		{
 			System.out.println("Loading data ...");
 			try 
 			{				
 				String readString = reader.readLine();
 				//System.out.println(r);
-				String words[] = readString.split(",");
+				String words[] = readString.split(Constants.DELIMITER);
 				
 				Random randomGenerator = new Random();
 				int random = randomGenerator.nextInt(3);
@@ -79,7 +79,7 @@ public class StudentList
 			System.out.println("Data Loaded.");
 		} 
 
-		else if (args[0].contains("+")) 
+		else if (args[0].contains(Constants.ADD_WORD)) 
 		{
 			System.out.println("Loading data ...");
 			try 
@@ -102,13 +102,13 @@ public class StudentList
 			System.out.println("Data Loaded.");
 		} 
 		
-		else if (args[0].contains("?")) 
+		else if (args[0].contains(Constants.SEARCH_WORD)) 
 		{
 			System.out.println("Loading data ...");
 			try 
 			{				
 				String readString = reader.readLine();
-				String words[] = readString.split(",");
+				String words[] = readString.split(Constants.DELIMITER);
 				
 				boolean done = false;
 				String t = args[0].substring(1);
@@ -129,7 +129,7 @@ public class StudentList
 			System.out.println("Data Loaded.");
 		} 
 		
-		else if (args[0].contains("c")) 
+		else if (args[0].contains(Constants.SHOW_COUNT)) 
 		{
 			System.out.println("Loading data ...");
 			try 
