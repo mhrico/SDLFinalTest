@@ -4,8 +4,29 @@ import java.util.*;
 
 public class StudentList 
 {
+
+	//Declaring reader and writer outside of methods and making public, so they can be accessed from all methods
+	static BufferedReader reader;
+	static BufferedWriter writer;
+
+	// Putting all duplicate read/write logic into one method
+	public static void fileMethods()
+	{
+		try 
+		{
+			 reader = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt")));
+			 writer = new BufferedWriter(new FileWriter("students.txt", true));
+		}
+
+		catch(Exception e)
+		{
+
+		}
+	}
 	public static void main(String[] args) 
 	{
+		//Loads all the files for reading/writing
+		fileMethods();
 
 		// Checks for arguments
 		// Checks for number of arguments and terminates early if arg number is incorrect
@@ -20,9 +41,7 @@ public class StudentList
 		{
 			System.out.println("Loading data ...");
 			try 
-			{
-				BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt")));
-				
+			{	
 				String readString = reader.readLine();
 				String words[] = readString.split(",");
 				for (String word : words) 
@@ -43,9 +62,7 @@ public class StudentList
 		{
 			System.out.println("Loading data ...");
 			try 
-			{
-				BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt")));
-				
+			{				
 				String readString = reader.readLine();
 				//System.out.println(r);
 				String words[] = readString.split(",");
@@ -66,9 +83,7 @@ public class StudentList
 		{
 			System.out.println("Loading data ...");
 			try 
-			{
-				BufferedWriter reader = new BufferedWriter(new FileWriter("students.txt", true));
-				
+			{	
 				String subString = args[0].substring(1);
 				
 				Date date = new Date();
@@ -76,8 +91,8 @@ public class StudentList
 				DateFormat dateFormat = new SimpleDateFormat(dateStyle);
 				String formattedDate = dateFormat.format(date);
 				
-				reader.write(", " + subString + "\nList last updated on " + formattedDate);
-				reader.close();
+				writer.write(", " + subString + "\nList last updated on " + formattedDate);
+				writer.close();
 			} 
 			catch (Exception e) 
 			{
@@ -91,9 +106,7 @@ public class StudentList
 		{
 			System.out.println("Loading data ...");
 			try 
-			{
-				BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt")));
-				
+			{				
 				String readString = reader.readLine();
 				String words[] = readString.split(",");
 				
@@ -120,9 +133,7 @@ public class StudentList
 		{
 			System.out.println("Loading data ...");
 			try 
-			{
-				BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt")));
-				
+			{				
 				String storedString = reader.readLine();
 				char characterArray[] = storedString.toCharArray();
 				
