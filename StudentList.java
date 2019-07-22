@@ -89,9 +89,8 @@ public class StudentList
 				Date date = new Date();
 				String dateStyle = "dd/mm/yyyy-hh:mm:ss a";
 				DateFormat dateFormat = new SimpleDateFormat(dateStyle);
-				String formattedDate = dateFormat.format(date);
 				
-				writer.write(", " + subString + "\nList last updated on " + formattedDate);
+				writer.write(", " + subString + "\nList last updated on " + dateFormat.format(date));
 				writer.close();
 			} 
 			catch (Exception e) 
