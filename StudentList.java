@@ -7,7 +7,15 @@ public class StudentList
 	public static void main(String[] args) 
 	{
 
-		// Check arguments
+		// Checks for arguments
+		// Checks for number of arguments and terminates early if arg number is incorrect
+
+		if(args == null || args.length != 1) 
+		{
+			System.out.println("Incorrect parameters. Usage: java StudentList a | r | c | +WORD | ?WORD");
+			return; 
+		}
+
 		if (args[0].equals("a")) 
 		{
 			System.out.println("Loading data ...");
