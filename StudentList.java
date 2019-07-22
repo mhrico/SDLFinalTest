@@ -141,29 +141,9 @@ public class StudentList
 			try 
 			{				
 				String storedString = reader.readLine();
-				char characterArray[] = storedString.toCharArray();
-				
-				boolean in_word = false;
-				
-				int count = 0;
-				for (char characters : characterArray) 
-				{
-					if (characters == ' ') 
-					{
-						if (!in_word) 
-						{
-							count++;
-							in_word = true;
-						} 
-						
-						else 
-						{
-							in_word = false;
-						}
-					}
-				}
+				String[] splittedStrings = storedString.split(Constants.DELIMITER);
 
-				System.out.println(count + " word(s) found ");
+				System.out.println(splittedStrings.length + " word(s) found ");
 			} 
 			catch (Exception e) 
 			{
