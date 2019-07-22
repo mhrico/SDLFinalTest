@@ -21,13 +21,13 @@ public class StudentList
 			System.out.println("Loading data ...");
 			try 
 			{
-				BufferedReader s = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt")));
+				BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt")));
 				
-				String r = s.readLine();
-				String i[] = r.split(",");
-				for (String j : i) 
+				String readString = reader.readLine();
+				String words[] = readString.split(",");
+				for (String word : words) 
 				{
-					System.out.println(j);
+					System.out.println(word);
 				}
 			} 
 			catch (Exception e) 
@@ -44,15 +44,15 @@ public class StudentList
 			System.out.println("Loading data ...");
 			try 
 			{
-				BufferedReader s = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt")));
+				BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt")));
 				
-				String r = s.readLine();
+				String readString = reader.readLine();
 				//System.out.println(r);
-				String i[] = r.split(",");
+				String words[] = readString.split(",");
 				
-				Random x = new Random();
-				int y = x.nextInt(3);
-				System.out.println(i[y]);
+				Random randomGenerator = new Random();
+				int random = randomGenerator.nextInt(3);
+				System.out.println(words[random]);
 			} 
 			catch (Exception e) 
 			{
@@ -62,20 +62,22 @@ public class StudentList
 			System.out.println("Data Loaded.");
 		} 
 
-		else if (args[0].contains("+")) {
+		else if (args[0].contains("+")) 
+		{
 			System.out.println("Loading data ...");
-			try {
-				BufferedWriter s = new BufferedWriter(new FileWriter("students.txt", true));
+			try 
+			{
+				BufferedWriter reader = new BufferedWriter(new FileWriter("students.txt", true));
 				
-				String t = args[0].substring(1);
+				String subString = args[0].substring(1);
 				
-				Date d = new Date();
-				String df = "dd/mm/yyyy-hh:mm:ss a";
-				DateFormat dateFormat = new SimpleDateFormat(df);
-				String fd = dateFormat.format(d);
+				Date date = new Date();
+				String dateStyle = "dd/mm/yyyy-hh:mm:ss a";
+				DateFormat dateFormat = new SimpleDateFormat(dateStyle);
+				String formattedDate = dateFormat.format(date);
 				
-				s.write(", " + t + "\nList last updated on " + fd);
-				s.close();
+				reader.write(", " + subString + "\nList last updated on " + formattedDate);
+				reader.close();
 			} 
 			catch (Exception e) 
 			{
@@ -90,16 +92,16 @@ public class StudentList
 			System.out.println("Loading data ...");
 			try 
 			{
-				BufferedReader s = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt")));
+				BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt")));
 				
-				String r = s.readLine();
-				String i[] = r.split(",");
+				String readString = reader.readLine();
+				String words[] = readString.split(",");
 				
 				boolean done = false;
 				String t = args[0].substring(1);
-				for (int idx = 0; idx < i.length && !done; idx++)
+				for (int idx = 0; idx < words.length && !done; idx++)
 				{
-					if (i[idx].equals(t)) 
+					if (words[idx].equals(t)) 
 					{
 						System.out.println("We found it!");
 						done = true;
@@ -119,17 +121,17 @@ public class StudentList
 			System.out.println("Loading data ...");
 			try 
 			{
-				BufferedReader s = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt")));
+				BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt")));
 				
-				String D = s.readLine();
-				char a[] = D.toCharArray();
+				String storedString = reader.readLine();
+				char characterArray[] = storedString.toCharArray();
 				
 				boolean in_word = false;
 				
 				int count = 0;
-				for (char c : a) 
+				for (char characters : characterArray) 
 				{
-					if (c == ' ') 
+					if (characters == ' ') 
 					{
 						if (!in_word) 
 						{
@@ -144,7 +146,7 @@ public class StudentList
 					}
 				}
 
-				System.out.println(count + " word(s) found " + a.length);
+				System.out.println(count + " word(s) found " + characterArray.length);
 			} 
 			catch (Exception e) 
 			{
